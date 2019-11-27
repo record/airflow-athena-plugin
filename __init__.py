@@ -55,7 +55,7 @@ class AwsAthenaHook(AwsHook):
                     exec_resp = self._client.get_query_execution(
                         QueryExecutionId=query_id)
                     status = exec_resp['QueryExecution']['Status']['State']
-                    if status != 'RUNNING':
+                    if status not in ('QUEUED', 'RUNNING'):
                         break
 
                     self.log.info('query is running, wait 3 seconds')
