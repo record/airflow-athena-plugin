@@ -1,3 +1,4 @@
+import six
 import time
 from threading import Lock
 
@@ -24,7 +25,7 @@ class AwsAthenaHook(AwsHook):
             request_token=None,
             schema=None,
             result_config=None):
-        if isinstance(sql, basestring):
+        if isinstance(sql, six.string_types):
             sql = [sql]
 
         params = {'ResultConfiguration': result_config or {}}
